@@ -23,7 +23,6 @@ def load_image(url):
         print(f"Ошибка при загрузке изображения: {e}")
         return None
 
-
 def set_image():
      img = load_image(url)  # Вызываем функцию для загрузки изображения
 
@@ -34,6 +33,10 @@ def set_image():
          label.image = img
 
 
+def exit():
+    window.destroy()
+
+
 window = Tk()
 window.title("Cats!")
 window.geometry("600x520")
@@ -42,9 +45,19 @@ window.geometry("600x520")
 label = Label()
 label.pack()
 
+
 # Добавляем кнопку для обновления изображения
-update_buttun = Button(text='Обновить', command=set_image)
-update_buttun.pack()
+#update_buttun = Button(text='Обновить', command=set_image)
+#update_buttun.pack()
+
+menu_bar = Menu(window)
+window.config(menu=menu_bar)
+
+file_menu = Menu(menu_bar, tearoff=0)
+menu_bar.add_cascade(label='Файл', menu=file_menu)
+file_menu.add_command(label='Загрузить фото', command=set_image)
+file_menu.add_separator()
+file_menu.add_command(label='Выход', command=exit)
 
 url = 'https://cataas.com/cat'
 
