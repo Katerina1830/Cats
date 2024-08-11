@@ -17,7 +17,7 @@ def load_image(url):
 
         # Открываем изображение с помощью PIL
         img = Image.open(image_data)
-
+        img.thumbnail((600, 520), Image.Resampling.LANCZOS)
         return ImageTk.PhotoImage(img)
     except Exception as e:
         print(f"Ошибка при загрузке изображения: {e}")
@@ -25,7 +25,7 @@ def load_image(url):
 
 
 def set_image():
-     img = load_image(url)
+     img = load_image(url)  # Вызываем функцию для загрузки изображения
 
      if img:
          # Устанавливаем изображение в метку
@@ -36,17 +36,19 @@ def set_image():
 
 window = Tk()
 window.title("Cats!")
-window.geometry("600x480")
+window.geometry("600x520")
 
 # Создаем метку без изображения
 label = Label()
 label.pack()
 
+# Добавляем кнопку для обновления изображения
 update_buttun = Button(text='Обновить', command=set_image)
 update_buttun.pack()
 
 url = 'https://cataas.com/cat'
 
+# Вызываем функцию для установки изображения в метку
 set_image()
 
 
