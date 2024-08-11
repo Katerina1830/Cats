@@ -23,9 +23,12 @@ def load_image(url):
         print(f"Ошибка при загрузке изображения: {e}")
         return None
 
+
 #меняем название функции с set_image на open
 def open_new_window():
-     img = load_image(url)  # Вызываем функцию для загрузки изображения
+     tag = tag_entry.get()
+     url_tag = f'https://cataas.com/cat/{tag}' if tag else 'https://cataas.com/cat'
+     img = load_image(url_tag)  # Вызываем функцию для загрузки изображения
 
      if img:
          new_window = Toplevel()
@@ -47,9 +50,14 @@ window = Tk()
 window.title("Cats!")
 window.geometry("600x520")
 
-# Создаем метку label без изображения, а потом ее переносим в def open_new_window():
+tag_entry = Entry()
+tag_entry.pack()
 
+load_button = Button(text='Загрузить по тегу', command=open_new_window)
+load_button.pack()
 
+# Создаем метку label без изображения,
+# а потом ее переносим в def open_new_window():
 
 # Добавляем кнопку для обновления изображения, после создания меню убираем кнопки, по этому они #
 #update_buttun = Button(text='Обновить', command=set_image)
@@ -69,7 +77,7 @@ file_menu.add_command(label='Выход', command=exit)
 url = 'https://cataas.com/cat'
 
 # Вызываем функцию для установки изображения в метку
-set_image()
+#set_image() - потом удаляем, когда создали меню и функцию open
 
 
 window.mainloop()
