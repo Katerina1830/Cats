@@ -23,7 +23,8 @@ def load_image(url):
         print(f"Ошибка при загрузке изображения: {e}")
         return None
 
- def set_image():
+
+def set_image():
      img = load_image(url)
 
      if img:
