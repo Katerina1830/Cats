@@ -15,7 +15,6 @@ def loade_image():
         print(f"Произошла ошибка: {e}")
         return None
 
-
 window = Tk()
 window.title("Cats!")
 window.geometry("600x480")
